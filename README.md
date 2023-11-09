@@ -34,6 +34,42 @@ pip install torch==2.0.0+cpu torchvision==0.15.1+cpu torchaudio==2.0.1 --index-u
 pip install -r requirements_cpu.txt
 python app.py
 ````
+### GPU Install (CUDA) on colab
+
+!pip install virtualenv
+!virtualenv Swap-Mukham
+!source Swap-Mukham/bin/activate
+!git clone https://github.com/G-force78/Swap-Mukham.git
+!git checkout 3155e6e634f240c11c2a905139d576ce560d89ce
+%cd Swap-Mukham
+!pip install pytorch==2.0.0 torchvision==0.15.0 torchaudio==2.0.0 pytorch-cuda=11.8 -c pytorch -c nvidia  (not sure if this has any effect)
+
+----------
+
+!pip install onnx==1.14.0 onnxruntime-gpu==1.15.0
+!pip install gradio 3.33.1
+%cd /content/Swap-Mukham/Swap-Mukham
+print("Installing requirements...")
+!pip install kaleido
+!pip install fastapi
+!pip install python-multipart
+!pip install uvicorn
+!pip install cohere
+!pip install openai
+!pip install tiktoken
+!pip install -r requirements.txt 
+!pip install gdown
+print("Installing requirements done.")
+
+------
+!python3 /content/Swap-Mukham/Swap-Mukham/app.py --cuda --colab --batch_size 32
+
+--------
+
+
+
+
+
 ### GPU Install (CUDA)
 ````
 git clone https://github.com/harisreedhar/Swap-Mukham
