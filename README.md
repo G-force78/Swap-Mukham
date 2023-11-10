@@ -21,33 +21,42 @@ A simple face swapper based on insightface inswapper heavily inspired by roop.
 ### GPU Install (CUDA) on colab MUST USE VIRTUAL ENV
 
 !pip install virtualenv
+
 !virtualenv swap
+
 !source swap/bin/activate
+
 %cd swap
+
 !git clone https://github.com/G-force78/Swap-Mukham.git
+
 %cd Swap-Mukham
 
 
 -----------------
-!pip install onnx==1.14.0 onnxruntime-gpu==1.15.0
+
 !pip install -r requirements.txt
 
 -------------------
 ### Working reqs
-!pip install onnx==1.14.0 onnxruntime-gpu==1.15.0
-!pip install gradio 3.33.1
-%cd /content/Swap-Mukham/Swap-Mukham
-print("Installing requirements...")
-!pip install kaleido
-!pip install fastapi
-!pip install python-multipart
-!pip install uvicorn
-!pip install cohere
-!pip install openai
-!pip install tiktoken
-!pip install -r requirements.txt 
-!pip install gdown
-print("Installing requirements done.")
+gradio==3.33.1
+insightface==0.7.3
+moviepy>=1.0.3
+numpy
+onnx==1.14.0
+onnxruntime-gpu==1.15.0
+opencv-python>=4.7.0.72
+opencv-python-headless>=4.7.0.72
+gfpgan==1.3.8
+kaleido
+fastapi
+python-multipart
+uvicorn
+cohere
+openai
+tiktoken
+gdown
+lida
 
 --------------------
 ### DOWNLOAD MODELS
