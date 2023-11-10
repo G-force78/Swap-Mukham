@@ -5,7 +5,6 @@
 
 A simple face swapper based on insightface inswapper heavily inspired by roop.
 
-## Check [latest Swap-Mukham WIP repository](https://github.com/harisreedhar/Swap-Mukham/tree/new-wip)
 
 ## Features
 - Easy to use Gradio gui
@@ -16,36 +15,25 @@ A simple face swapper based on insightface inswapper heavily inspired by roop.
 - Face parsing mask
 - colab support
 
-https://github.com/harisreedhar/Swap-Mukham/assets/46858047/d8f2389a-3078-43a1-94f8-77f30a8c6686
-
-### Comparison
-
-![10](https://github.com/harisreedhar/Swap-Mukham/assets/46858047/37035b9d-915d-4be6-9e21-5852c88a3e12)
-
 
 ## Installation
-### CPU Install
-````
-git clone https://github.com/harisreedhar/Swap-Mukham
-cd Swap-Mukham
-conda create -n swapmukham python=3.10 -y
-conda activate swapmukham
-pip install torch==2.0.0+cpu torchvision==0.15.1+cpu torchaudio==2.0.1 --index-url https://download.pytorch.org/whl/cpu
-pip install -r requirements_cpu.txt
-python app.py
-````
-### GPU Install (CUDA) on colab
+
+### GPU Install (CUDA) on colab MUST USE VIRTUAL ENV
 
 !pip install virtualenv
-!virtualenv Swap-Mukham
-!source Swap-Mukham/bin/activate
+!virtualenv swap
+!source swap/bin/activate
+%cd swap
 !git clone https://github.com/G-force78/Swap-Mukham.git
-!git checkout 3155e6e634f240c11c2a905139d576ce560d89ce
 %cd Swap-Mukham
-!pip install pytorch==2.0.0 torchvision==0.15.0 torchaudio==2.0.0 pytorch-cuda=11.8 -c pytorch -c nvidia  (not sure if this has any effect)
 
-----------
 
+-----------------
+!pip install onnx==1.14.0 onnxruntime-gpu==1.15.0
+!pip install -r requirements.txt
+
+-------------------
+### Working reqs
 !pip install onnx==1.14.0 onnxruntime-gpu==1.15.0
 !pip install gradio 3.33.1
 %cd /content/Swap-Mukham/Swap-Mukham
@@ -61,8 +49,43 @@ print("Installing requirements...")
 !pip install gdown
 print("Installing requirements done.")
 
-------
+--------------------
+### DOWNLOAD MODELS
+
+
+
+!wget https://huggingface.co/datasets/OwlMaster/gg2/resolve/main/inswapper_128.onnx -O /content/swap/Swap-Mukham/assets/pretrained_models/inswapper_128.onnx
+
+!wget https://github.com/TencentARC/GFPGAN/releases/download/v1.3.0/GFPGANv1.4.pth -O /content/swap/Swap-Mukham/assets/pretrained_models/GFPGANv1.4.pth
+
+!gdown https://drive.google.com/uc?id=154JgKpzCPW82qINcVieuPH3fZ2e0P812 -O /content/swap/Swap-Mukham/assets/pretrained_models/
+
+!wget https://huggingface.co/ai-forever/Real-ESRGAN/resolve/main/RealESRGAN_x2.pth -O /content/swap/Swap-Mukham/assets/pretrained_models/RealESRGAN_x2.pth
+
+!wget https://huggingface.co/ai-forever/Real-ESRGAN/resolve/main/RealESRGAN_x4.pth -O /content/swap/Swap-Mukham/assets/pretrained_models/RealESRGAN_x4.pth
+
+!wget https://huggingface.co/ai-forever/Real-ESRGAN/resolve/main/RealESRGAN_x8.pth -O /content/swap/Swap-Mukham/assets/pretrained_models/RealESRGAN_x8.pth
+
+!wget https://huggingface.co/bluefoxcreation/Codeformer-ONNX/resolve/main/codeformer.onnx -O /content/swap/Swap-Mukham/assets/pretrained_models/codeformer.onnx
+
+!wget https://huggingface.co/bluefoxcreation/open-nsfw/resolve/main/open-nsfw.onnx -O /content/swap/Swap-Mukham/assets/pretrained_models/open-nsfw.onnx
+
+----------------------------
+### RUN
 !python3 /content/Swap-Mukham/Swap-Mukham/app.py --cuda --colab --batch_size 32
+
+-----------------------
+### CPU Install (Unsure if works now)
+````
+git clone https://github.com/harisreedhar/Swap-Mukham
+cd Swap-Mukham
+conda create -n swapmukham python=3.10 -y
+conda activate swapmukham
+pip install torch==2.0.0+cpu torchvision==0.15.1+cpu torchaudio==2.0.1 --index-url https://download.pytorch.org/whl/cpu
+pip install -r requirements_cpu.txt
+python app.py
+````
+
 
 --------
 
