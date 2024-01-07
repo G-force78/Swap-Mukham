@@ -20,10 +20,15 @@ A simple face swapper based on insightface inswapper heavily inspired by roop an
 ### GPU Install (CUDA) on colab MUST USE VIRTUAL ENV
 
 !pip install virtualenv
+
 !virtualenv swap
+
 !source /swap/bin/activate
+
 %cd /content/swap
+
 !git clone https://github.com/G-force78/Swapm
+
 %cd /content/swap/Swapm
 
 !pip install -r requirements.txt
