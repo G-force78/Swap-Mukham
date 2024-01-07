@@ -1,9 +1,8 @@
-# Swap-Mukham
-[![Open In Colab](https://img.shields.io/badge/Open%20In-Colab-blue?logo=google-colab&logoColor=white)](https://colab.research.google.com/github/harisreedhar/Swap-Mukham/blob/main/swap_mukham_colab.ipynb)
-[![Hugging Face](https://img.shields.io/badge/Demo-%F0%9F%A4%97%20Hugging%20Face-blue)](https://huggingface.co/spaces/bluefoxcreation/SwapMukham)
+# Swapm
+
 ## Description
 
-A simple face swapper based on insightface inswapper heavily inspired by roop.
+A simple face swapper based on insightface inswapper heavily inspired by roop and swap-mukham.
 
 
 ## Features
@@ -21,21 +20,19 @@ A simple face swapper based on insightface inswapper heavily inspired by roop.
 ### GPU Install (CUDA) on colab MUST USE VIRTUAL ENV
 
 !pip install virtualenv
-
 !virtualenv swap
+!source /swap/bin/activate
+%cd /content/swap
+!git clone https://github.com/G-force78/Swapm
+%cd /content/swap/Swapm
 
-!source swap/bin/activate
+!pip install -r requirements.txt
 
-%cd swap
-
-!git clone https://github.com/G-force78/Swap-Mukham.git
-
-%cd Swap-Mukham
-
+!pip install https://github.com/karaokenerds/python-audio-separator/releases/download/v0.12.1/onnxruntime_gpu-1.17.0-cp310-cp310-linux_x86_64.whl
 
 -----------------
 
-!pip install -r requirements.txt
+
 
 -------------------
 ### Working reqs
@@ -43,8 +40,7 @@ gradio==3.33.1
 insightface==0.7.3
 moviepy>=1.0.3
 numpy
-onnx==1.14.0
-onnxruntime-gpu==1.15.0
+
 opencv-python>=4.7.0.72
 opencv-python-headless>=4.7.0.72
 gfpgan==1.3.8
@@ -81,7 +77,9 @@ lida
 
 ----------------------------
 ### RUN
-!python3 /content/Swap-Mukham/Swap-Mukham/app.py --cuda --colab --batch_size 32
+!python3 /content/Swap-Mukham/Swapm/app.py --cuda --colab --batch_size 32
+
+
 
 -----------------------
 ### CPU Install (Unsure if works now)
