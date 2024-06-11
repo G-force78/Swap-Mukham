@@ -5,6 +5,12 @@ import gfpgan
 from PIL import Image
 from upscaler.RealESRGAN import RealESRGAN
 from upscaler.codeformer import CodeFormerEnhancer
+from upscaler.GPEN import GPEN
+
+def gpen_runner(img, model):
+    img = model.enhance(img)
+    return img
+
 
 def gfpgan_runner(img, model):
     _, imgs, _ = model.enhance(img, paste_back=True, has_aligned=True)
@@ -24,6 +30,9 @@ def codeformer_runner(img, model):
 supported_enhancers = {
     "CodeFormer": ("./assets/pretrained_models/codeformer.onnx", codeformer_runner),
     "GFPGAN": ("./assets/pretrained_models/GFPGANv1.4.pth", gfpgan_runner),
+    "GPEN-BFR-512": ("./assets/pretrained_models/GPEN_BFR_512_pth", gpen_runner),
+    "GPEN-BFR-256": ("./assets/pretrained_models/GPEN_BFR_256_pth", gpen_runner),
+    "RestoreFormer": (dp.RESTOREFORMER_PATH, gpen_runner),
     "REAL-ESRGAN 2x": ("./assets/pretrained_models/RealESRGAN_x2.pth", realesrgan_runner),
     "REAL-ESRGAN 4x": ("./assets/pretrained_models/RealESRGAN_x4.pth", realesrgan_runner),
     "REAL-ESRGAN 8x": ("./assets/pretrained_models/RealESRGAN_x8.pth", realesrgan_runner)
@@ -49,6 +58,11 @@ def load_face_enhancer_model(name='GFPGAN', device="cpu"):
         model = CodeFormerEnhancer(model_path=model_path, device=device)
     elif name == 'GFPGAN':
         model = gfpgan.GFPGANer(model_path=model_path, upscale=1, device=device)
+    elif name.startswith('GPEN'):
+        model = GPEN(model_path=model_path, provider=provider, session_options=session_options)
+    elif name == "RestoreFormer":
+        model = RestoreFormer(model_path=model_path, provider=provider, session_options=session_options)
+    
     elif name == 'REAL-ESRGAN 2x':
         model = RealESRGAN(device, scale=2)
         model.load_weights(model_path, download=False)
