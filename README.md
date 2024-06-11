@@ -1,8 +1,11 @@
 # Swapm
 
+https://colab.research.google.com/drive/1HIX1UK_eAYPCFrgk19e27lpaJuiVHmze#scrollTo=bTXMmHNi9XXB
+
+
 ## Description
 
-A simple face swapper based on insightface inswapper heavily inspired by roop and swap-mukham.
+A simple face swapper based on insightface inswapper heavily inspired by roop and swap-mukham with IP adapter
 
 
 ## Features
@@ -16,6 +19,9 @@ A simple face swapper based on insightface inswapper heavily inspired by roop an
 
 
 ## Installation
+
+https://colab.research.google.com/drive/1HIX1UK_eAYPCFrgk19e27lpaJuiVHmze#scrollTo=bTXMmHNi9XXB
+
 
 ### GPU Install (CUDA) on colab MUST USE VIRTUAL ENV
 
