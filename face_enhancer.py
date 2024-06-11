@@ -32,7 +32,7 @@ supported_enhancers = {
     "GFPGAN": ("./assets/pretrained_models/GFPGANv1.4.pth", gfpgan_runner),
     "GPEN-BFR-512": ("./assets/pretrained_models/GPEN_BFR_512_pth", gpen_runner),
     "GPEN-BFR-256": ("./assets/pretrained_models/GPEN_BFR_256_pth", gpen_runner),
-    "RestoreFormer": (dp.RESTOREFORMER_PATH, gpen_runner),
+    #"RestoreFormer": (dp.RESTOREFORMER_PATH, gpen_runner),
     "REAL-ESRGAN 2x": ("./assets/pretrained_models/RealESRGAN_x2.pth", realesrgan_runner),
     "REAL-ESRGAN 4x": ("./assets/pretrained_models/RealESRGAN_x4.pth", realesrgan_runner),
     "REAL-ESRGAN 8x": ("./assets/pretrained_models/RealESRGAN_x8.pth", realesrgan_runner)
