@@ -1,8 +1,25 @@
 # Swapm
 
+UPDATE: Added Ip adapter to controlnet and colab
+
+https://colab.research.google.com/drive/1HIX1UK_eAYPCFrgk19e27lpaJuiVHmze#scrollTo=bTXMmHNi9XXB
+
+
+Requirements:
+https://github.com/tencent-ailab/IP-Adapter
+https://huggingface.co/h94/IP-Adapter-FaceID/resolve/main/ip-adapter-faceid-plus_sd15.bin
+!pip install controlnet-aux==0.0.7 diffusers moviepy argparse transformers accelerate
+!pip install gradio==3.50.2
+!pip install insightface
+
+
+
+
 ## Description
 
-A simple face swapper based on insightface inswapper heavily inspired by roop and swap-mukham.
+A simple face swapper based on insightface inswapper heavily inspired by roop and swap-mukham with IP adapter to controlnet
+
+https://colab.research.google.com/drive/1HIX1UK_eAYPCFrgk19e27lpaJuiVHmze#scrollTo=bTXMmHNi9XXB
 
 
 ## Features
@@ -15,7 +32,9 @@ A simple face swapper based on insightface inswapper heavily inspired by roop an
 - colab support
 
 
-## Installation
+## Installation in google COLAB
+
+https://colab.research.google.com/drive/1HIX1UK_eAYPCFrgk19e27lpaJuiVHmze#scrollTo=bTXMmHNi9XXB
 
 ### GPU Install (CUDA) on colab MUST USE VIRTUAL ENV
 
