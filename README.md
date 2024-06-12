@@ -2,7 +2,7 @@
 
 https://colab.research.google.com/drive/1HIX1UK_eAYPCFrgk19e27lpaJuiVHmze#scrollTo=bTXMmHNi9XXB
 
-(GPEN not working at the moment)
+Everything is setup for a colab so otherwise may need to change paths.
 
 ## Description
 
