@@ -33,7 +33,7 @@ supported_enhancers = {
     "GFPGAN": ("./assets/pretrained_models/GFPGANv1.4.pth", gfpgan_runner),
     #"GPEN-BFR-512": ("./assets/pretrained_models/GPEN_BFR_512_pth", gpen_runner),
     "GPEN-BFR-512": ("./assets/pretrained_models/GPEN-BFR-512.onnx", gpen_runner),
-    "GPEN-BFR-256": ("./assets/pretrained_models/GPEN-BFR-256.onnx", gpen_runner),
+    #"GPEN-BFR-256": ("./assets/pretrained_models/GPEN-BFR-256.onnx", gpen_runner),
     #"RestoreFormer": (dp.RESTOREFORMER_PATH, gpen_runner),
     "REAL-ESRGAN 2x": ("./assets/pretrained_models/RealESRGAN_x2.pth", realesrgan_runner),
     "REAL-ESRGAN 4x": ("./assets/pretrained_models/RealESRGAN_x4.pth", realesrgan_runner),
@@ -61,7 +61,7 @@ def load_face_enhancer_model(name='GFPGAN', device="cpu"):
     elif name == 'GFPGAN':
         model = gfpgan.GFPGANer(model_path=model_path, upscale=1, device=device)
     elif name.startswith('GPEN'):
-        model = GPEN(model_path=model_path, provider = ["CPUExecutionProvider"], session_options=None)
+        model = GPEN(model_path=model_path, provider = ["CUDAExecutionProvider"], session_options=None)
     elif name == "RestoreFormer":
         model = RestoreFormer(model_path=model_path, provider=provider, session_options=session_options)
     
