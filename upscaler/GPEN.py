@@ -8,7 +8,7 @@ import time
 lock = threading.Lock()
 
 class GPEN:
-    def __init__(self, model_path="GPEN-BFR-512.onnx", provider=["CPUExecutionProvider"], session_options=None):
+    def __init__(self, model_path="/content/swap/Swapm/assets/pretrained_models/GPEN-BFR-512.onnx", provider=["CUDAExecutionProvider"], session_options=None):
         self.session_options = session_options
         if self.session_options is None:
             self.session_options = onnxruntime.SessionOptions()
