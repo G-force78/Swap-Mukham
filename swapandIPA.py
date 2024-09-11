@@ -673,7 +673,7 @@ import numpy as np
 
 def generate_image(
     prompt,
-    negative_prompt,
+    negative_prompt, use_depth_map,
     depth_map_dir,
     face_reference_image,
     s_scale,
@@ -745,32 +745,47 @@ def generate_image(
         safety_checker=None,
     )
 
-    pipe.enable_model_cpu_offload()
+    #pipe.enable_model_cpu_offload()
     pipe.enable_vae_slicing()
 
     # load ip-adapter
     ip_model = IPAdapterFaceIDPlus(pipe, image_encoder_path, ip_ckpt, device)
 
-    depth_map_files = [
-        f for f in os.listdir(depth_map_dir) if f.endswith((".jpg", ".png"))
-    ]
+
+    # Handle depth map files
+    if use_depth_map and depth_map_dir:
+        depth_map_files = [
+            f for f in os.listdir(depth_map_dir) if f.endswith((".jpg", ".png"))
+        ]
+        if not depth_map_files:
+            return [Image.new('RGB', (512, 512), color='red')], "No depth map files found in the specified directory."
+    else:
+        depth_map_files = [None]  # Generate one image without depth map
+
     images = []
 
     for idx, filename in enumerate(depth_map_files):
-        depth_map_path = os.path.join(depth_map_dir, filename)
-        depth_map = load_image(depth_map_path)
+        if use_depth_map and depth_map_dir and filename:
+            depth_map_path = os.path.join(depth_map_dir, filename)
+            depth_map = load_image(depth_map_path)
+        else:
+            depth_map = None
+
+        # Create a default image if depth_map is None
+        if depth_map is None:
+            depth_map = Image.new('RGB', (512, 512), color='white')
 
         image = ip_model.generate(
             prompt=prompt,
             negative_prompt=negative_prompt,
-            image=depth_map,
+            image=depth_map,  # Always pass an image, even if it's a blank one
             face_image=face_image,
             faceid_embeds=faceid_embeds,
             shortcut=v2,
             s_scale=s_scale,
             strength=strength,
             guidance_scale=guidance_scale,
-            num_samples=1,  # Generate one image per depth map
+            num_samples=1,
             width=512,
             height=512,
             num_inference_steps=num_inference_steps,
@@ -1071,6 +1086,7 @@ with gr.Blocks(css=css) as interface:
             with gr.Column():
                 prompt = gr.Textbox(label="Prompt")
                 negative_prompt = gr.Textbox(label="Negative Prompt")
+                use_depth_map = gr.Checkbox(label="Use Depth Map?", value=False)
                 depth_map_dir = gr.Textbox(label="Depth Map Directory")
                 face_reference_image = gr.Image(
                     label="Face Reference Image", type="pil"
@@ -1115,6 +1131,7 @@ with gr.Blocks(css=css) as interface:
             inputs=[
                 prompt,
                 negative_prompt,
+                use_depth_map,
                 depth_map_dir,
                 face_reference_image,
                 s_scale,
